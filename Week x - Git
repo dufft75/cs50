@@ -1,0 +1,17 @@
+GIT
+
+git clone + url ==>  clone le repo
+git branch ==> liste des branches
+git checkout ==> changer de branche
+git checkout -b <branch name> ==> créer une branche
+git add + nom du fichier ==> ajoute le fichier pour le prochain commit
+git add all => ajoute tous les fichiers qui ont une différence
+git commit -m "commit message" ==> commit sur la branche en local
+git commit -am => ajoute tous les fichiers et commit en une seule commande
+git push ==> pour pousser les changements vers le repo
+git pull ==> récupérer les changements du serveur vers le local
+git log ==> historique des commit que l'utilisateur a effectué
+git reset -- hard <commit> ==> on revient vers le commit (on utilise le hash à la place de <commit>)
+git reset -- hard origin/master 
+git push --set-upstream origin red ==> si on a créé la branche en local, on peut la push sur le repo distant mais on doit déclarer son origin pour ne pas avoir d'erreur
+git merge <branch name> ==> contexte : on se trouve sur une branche (exemple : master) et on veut merge une branche 'feature' vers master. on va alors taper la commande suivante : 'git merge feature'

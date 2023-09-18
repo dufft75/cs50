@@ -1,0 +1,317 @@
+***Week 2***
+
+Pour info : La commande make exécute deux commande qui se décomposent comme suite : 
+clang NOM_DU_FICHIER -> résultat sort un fichier a.out
+mv a.out hello.c -> vient renomment le fichier de sortie en hello.c
+
+on peut aussi taper clang -O hello hello.c 
+ici ont passe deux arguments (hello et hello.c) et on otbient directement hello.c
+
+Le plus rapide reste donc d'executer la commande 'make hello'
+
+------
+Compilation comprends les 4 étapes suivantes : 
+**preprocessing**
+la machine regarde les librairies qui sont importée en début de code(ex : #cs50.h #stdio.h)
+ces fichiers doivent être dans 'usr/include/' sur la machine ou dans le cloud.
+le fichier est lu par la machien et réucpère les fonctions utilisées dans ces différents fichiers séparés.
+
+**compiling**
+converti le code en 'assembly code' 
+
+**assembling**
+converti le 'assembly code' to 0 et 1 
+
+**linking**
+lie les 0 et 1 du fichier ceux des librairies utilisées por ne faire plus qu'un fichier de 0 et 1.
+-------------
+
+DATA TYPES
+
+bool   1 byte (8 bits)
+int    4 bytes (32 bits) => on a donc 4 000 000 000 de possibilités. 2M positifs et 2M négatifs 
+long   8 bytes (64 bits)
+float  4 bytes
+double 8 bytes
+char   1 byte
+string ? bytes
+
+**arrays**
+
+a string is an array of characters.
+
+***shorts***
+
+***Short 1 : functions ***
+Function = Methods = Procedures = Subroutines
+
+Une fonction peut avoir 0 et plusieurs inputs et 1 output. 
+
+``` c
+func (a, b, c)
+```
+3 inputs => a, b, c
+1 output
+
+On déclare les fonctions en début de code pour dire à l'ordinateur que nous allons utiliser telle fonction plus loin dans le code.
+
+Format de déclaration : 
+
+```js
+returnType name(argument-list)
+```
+returnType -> declare le type de variable retournée (string, int...)
+name -> nom de la fonction
+argument-list -> the comma separated set of outputs to your fonction. each of wich as a type and a name.
+
+exemple de déclaration : 
+
+```c
+int add_two_ints(int a, int b);
+```
+
+Format de définition d'une fonction : 
+```c
+int add_two_ints(int a, int b)
+{ 
+    int sum;     //déclare la variable
+    sum = a + b; //on fait la somme (on peut également écrir directement int sum = a + b; pour gagner une ligne)
+    return sum;  //on retourne l'output
+}
+```
+
+Format d'appel de la fonction
+```c
+int z add_two_ints( x, y);
+```
+
+![Texte alternatif](/users/frederictordjman/desktop/Capture.png)
+
+
+***Short 2 : variables and scopes ***
+Le scope est une caractéristique de variable qui définit à partir de quelle fonction on peut accèder à la variable.
+2 types de scope en C :
+- LOCAL VARIABLES : can only be accessed within the functions in wich they are created
+- GLOBAL VARIABLES : can be accessed from any function in the program ; Ces variables sont déclarées à l'extérieur des fonctions et peuvent donc être appelée de n'importe où. 
+
+***Short 3 : Debugging step through ***
+
+From chat GPT : 
+
+"Debug step through" est une expression couramment utilisée dans le domaine de la programmation pour décrire un processus de débogage étape par étape. Lorsque vous déboguez un programme, vous essayez d'identifier et de résoudre les erreurs ou les comportements indésirables dans le code. Le débogage "step through" consiste à exécuter le programme pas à pas, en observant son comportement à chaque étape pour comprendre où et pourquoi quelque chose ne fonctionne pas comme prévu.
+
+Voici comment fonctionne le processus de débogage "step through" :
+
+1. **Point d'Arrêt (Breakpoint) :** Vous placez des points d'arrêt à des endroits spécifiques dans votre code où vous soupçonnez qu'il pourrait y avoir un problème. Lorsque le débogueur atteint un point d'arrêt, il arrête l'exécution du programme à cet endroit.
+
+2. **Exécution Étape par Étape :** Une fois que le programme est en pause à un point d'arrêt, vous pouvez exécuter le code pas à pas. Cela signifie que vous pouvez avancer ligne par ligne, ou instruction par instruction, pour observer comment les variables changent, comment les instructions sont exécutées et pour repérer tout comportement anormal.
+
+3. **Observation des Variables :** Pendant le débogage "step through", vous pouvez surveiller les valeurs des variables à chaque étape. Cela vous permet de repérer les valeurs incorrectes, les valeurs nulles ou tout autre problème qui pourrait affecter le comportement du programme.
+
+4. **Identification des Problèmes :** En observant le déroulement étape par étape, vous pouvez identifier où le programme ne se comporte pas comme prévu. Vous pouvez localiser les erreurs logiques, les erreurs de calcul, les valeurs inattendues des variables, etc.
+
+5. **Corrections et Tests :** Une fois que vous avez identifié le problème, vous pouvez apporter des modifications au code pour résoudre l'erreur ou le comportement indésirable. Après les modifications, vous pouvez exécuter à nouveau le programme en utilisant le débogage "step through" pour vérifier que les changements ont résolu le problème.
+
+L'utilisation du débogage "step through" est un moyen efficace de résoudre les problèmes dans le code, car il vous permet d'obtenir une vue détaillée de l'exécution du programme. Cela vous aide à mieux comprendre le flux d'exécution, à repérer les erreurs et à tester les solutions de manière contrôlée. Les environnements de développement intégrés (IDE) et les outils de débogage fournissent des fonctionnalités pour exécuter le code étape par étape, observer les variables et prendre des mesures pour corriger les problèmes.
+
+***Short 4 : Debugging step into ***
+
+From chat gpt :
+
+"Debug step into" est une autre expression utilisée dans le contexte du débogage de programmes. Elle se réfère à une action spécifique dans laquelle un programme en cours d'exécution est interrompu pour permettre au développeur d'entrer dans une fonction ou une méthode appelée à partir du code en cours. Cette action est utile pour inspecter le fonctionnement interne d'une fonction ou d'une méthode particulière afin de comprendre comment elle est implémentée et de trouver d'éventuels problèmes.
+
+L'action "Debug step into" fonctionne de la manière suivante :
+
+1. **Appel de Fonction :** Lorsque le programme atteint un point dans le code où une fonction ou une méthode est appelée, vous pouvez choisir d'entrer dans cette fonction en utilisant l'action "Debug step into".
+
+2. **Interruption de l'Exécution :** Une fois que vous choisissez de "step into" la fonction, le débogueur interrompt l'exécution du programme à ce point et vous amène à l'intérieur de la fonction. Cela signifie que vous passez de la vue du code appelant à la vue du code de la fonction appelée.
+
+3. **Débogage à l'Intérieur de la Fonction :** Une fois à l'intérieur de la fonction, vous pouvez observer le flux d'exécution, examiner les valeurs des variables locales, et observer comment chaque instruction de la fonction est exécutée.
+
+4. **Observation des Détails :** Le débogage "step into" vous permet de voir comment chaque ligne de la fonction contribue à son fonctionnement global. Cela peut être particulièrement utile lorsque vous essayez de comprendre pourquoi une fonction ne produit pas les résultats attendus.
+
+5. **Sortie de la Fonction :** Après avoir exploré l'intérieur de la fonction et obtenu les informations nécessaires, vous pouvez choisir de continuer l'exécution en utilisant d'autres actions de débogage, comme "step over" (passer à la ligne suivante), "step out" (sortir de la fonction en cours), ou "continue" (continuer jusqu'au prochain point d'arrêt).
+
+En résumé, "Debug step into" est une action de débogage qui vous permet de plonger dans le détail d'une fonction ou d'une méthode appelée à partir du code actuel. Cela vous aide à comprendre comment la fonction est exécutée, ce qui peut être extrêmement utile pour diagnostiquer les erreurs, comprendre les problèmes et améliorer votre connaissance du fonctionnement du code.
+
+***Short 5 :  arrays ***
+
+Utilisé pour stocker des éléments du même type.
+
+Le premier élèment à la position 0.
+
+Si le tableau comporte n élèments, le dernier élèment est à la position n-1.
+
+Si on a 50 élèments, le premier est à l'index 0 et le dernier à l'index 49.
+
+Déclaration d'un tableau : 
+
+```c
+type name [size];
+```
+type = type de variable qu'aura chaque élèment du tableau. Par exemple, si on veut un tableau d'integer, on écrit : int name [size]
+name = nom du tableau.
+size = nombre d'élèments que l'ont veut que le tableau comporte.
+
+exemple :
+```c
+int student_grades[40];
+double menu_prices[8];
+```
+
+```c
+bool truthtable[10];
+
+truthtable[2] = false;
+if (truhttable[7] == true)
+{
+    printf ("TRUE ! \n");
+}
+```
+Déclaration avec variables pour des petits tableaux : 
+```c
+// instantaion declaration syntax
+bool truthtable [3] {false, true, true};
+
+//On peut ne pas mettre l'index, en entrant 3 variable le compiler comprends la taille du tableau :
+bool truthtable [] {false, true, true};
+
+// individual element syntax
+bool truthtable [3];
+truthtable [1] = false;
+truthtable [2] = true;
+truthtable [3] = true;
+```
+
+Ensuite si on a besoin de faire de grands tableaux avec 100 int par exemple : on peut utiliser une loop.
+
+On peut créer des tableaux à plusieurs dimension pour faciliter la compréhension/représentation. 
+
+exemple : 
+```c
+bool truthtable [10][10];
+//tableau de 100 composants. Mais pour la machine ça reste un tableau linéaire de 100 élèments. Cette syntax aide plus les dev à se rerésenter et accèder aux variables. Pour un jeux avec une grille par exemple.
+```
+
+Dans le language C, On peut traiter chaque élèment du tableau comme une varible mais on ne peut pas transférer le tableau en tant que tel dans une variable.On ne peut pas assigner un tableau à un autre tableau avec l'opérateur d'assignation. 
+
+On va utiliser une loop récuère les élèments et la ajouter un à un dans le tableau cible.
+
+Exemple : 
+```c
+int foo [5] = {1, 2, 3, 4, 5};
+int bar [5];
+//on ne peut pas assigner bar dans fou comme ceci : 
+bar = foo // ceci ne fonctionne pas
+//on va passer par une loop :
+
+for (int j = 0; j < 5; j++)
+{
+    bar[j] = foo[j];
+}
+ ```
+Dans d'autres language on est pas obligé de passer par une loop. On peut faire l'assignement du tableau directement. 
+
+NB : En C, les variables sont passées transmises par valeur et les tableaux par référence.
+
+Cela veut dire que pour une variable, si j'appel une fonction pour la transformer, la variable en elle même n'est pas transformée. 
+
+Exemple : 
+
+```C
+#include <stdio.h>
+
+void modifyValue(int x) {
+    x = 10;
+}
+
+int main() {
+    int num = 5;
+    printf("Avant l'appel de la fonction : num = %d\n", num);
+    
+    modifyValue(num);  // Appel de la fonction
+    
+    printf("Après l'appel de la fonction : num = %d\n", num);
+    
+    return 0;
+}
+```
+Ici num est toujorus égal à 5. 
+
+Il faut que la fonction retourne le résultat dans une nouvelle variable. Ou bien il faut utiliser un pointeur.
+
+exemple avec assignation de variable : 
+```c
+#include <stdio.h>
+
+int modifyValueAndReturnNewValue(int x) {
+    return x * 2; // Retourner une nouvelle valeur
+}
+
+int main() {
+    int num = 5;
+    printf("Avant l'appel de la fonction : num = %d\n", num);
+    
+    num = modifyValueAndReturnNewValue(num); // Assigner la nouvelle valeur retournée
+    
+    printf("Après l'appel de la fonction : num = %d\n", num);
+    
+    return 0;
+}
+```
+Avec un pointeur : 
+```c
+#include <stdio.h>
+
+void modifyValueWithPointer(int *x) {
+    *x = 10; // Modifier la valeur pointée par le pointeur
+}
+
+int main() {
+    int num = 5;
+    printf("Avant l'appel de la fonction : num = %d\n", num);
+    
+    modifyValueWithPointer(&num); // Passer un pointeur vers num
+    
+    printf("Après l'appel de la fonction : num = %d\n", num);
+    
+    return 0;
+}
+```
+
+Pour un tableau ce n'est pas le cas, le tableau est directement transformé.
+
+exemple : 
+
+```c
+void modifyArray(int arr[], int size) {
+    for (int i = 0; i < size; i++) {
+        arr[i] *= 2;
+    }
+}
+
+int main() {
+    int myArray[] = {1, 2, 3, 4, 5};
+    modifyArray(myArray, 5);
+    // Maintenant, myArray contient {2, 4, 6, 8, 10}.
+    return 0;
+}
+```
+
+***Short 5 : command line arguments ***
+
+argc : argument count
+argv (array of strings) : argument vector
+
+ARGC
+Si je lance un prg qui se nomme 'greedy'
+
+Si je tape ./greedy (le nom du prg compte comme 1 argument) => alors argc = 1 
+Si je tape ./greedy 1024 cs50 (je passe 2 arguments en input) => alors argc = 3 car on passe le nom + 2 input
+
+ARGV
+si je tape ./greedy 1025 cs50 ; chaque argument est délimité par un espace. Argv est un tableau de string. Lorsque l'on stock 1024, on stock la texte 1024 et pas la valeur numérique.
+argv[0]= "./greedy"
+argv[1]= "1024"
+argv[2]= "cs50
+argv[3]=
